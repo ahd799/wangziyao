@@ -1,0 +1,41 @@
+@echo off
+chcp 65001 >nul
+cls
+echo ============================================================
+echo   王梓瑶个人主页  —— 新版 index.html 部署到 GitHub Pages
+echo ============================================================
+echo.
+
+REM 1. 把 deploy 目录里的 index.html 内容复制到 Windows 剪贴板
+cd /d "%~dp0"
+if not exist "index.html" (
+  echo [错误] 找不到 index.html，请重新从 d:\飞机大战\wangziyao-portfolio\deploy\ 运行此脚本
+  pause & exit /b 1
+)
+
+REM 使用 PowerShell 将 index.html 内容写入剪贴板（保留 UTF-8）
+powershell -NoProfile -Command "$p = Join-Path (Split-Path -Parent $MyInvocation.MyCommand.Path) 'index.html'; $c = Get-Content -Path $p -Raw -Encoding UTF8; Set-Clipboard -Value $c; Write-Host '[OK] 新版 index.html 的完整内容已复制到剪贴板'"
+if errorlevel 1 (
+  echo [警告] 自动复制失败，请手动用记事本打开 index.html，Ctrl+A 全选后 Ctrl+C 复制
+)
+
+echo.
+echo ------------------------------------------------------------
+echo   接下来请在浏览器中完成以下 4 步：
+echo.
+echo   ① 打开仓库：https://github.com/ahd799/wangziyao/
+echo   ② 点文件列表里的 index.html
+echo   ③ 点右上角铅笔图标 ✏ (Edit in place)
+echo   ④ 按 Ctrl+A 全选原内容 → 按 Ctrl+V 粘贴本脚本复制的新版
+echo      → 页面底部 "Commit changes" 提交
+echo.
+echo   约 10~30 秒后，访问 https://ahd799.github.io/wangziyao/ 就能看到新网站了 ✨
+echo ------------------------------------------------------------
+echo.
+
+REM 2. 自动打开 GitHub 仓库（方便第 ① 步）
+start "" "https://github.com/ahd799/wangziyao/blob/main/index.html"
+echo 已为你打开 GitHub 仓库的 index.html 编辑入口页面。
+echo 如果是用 Git 本地 clone 发布，直接双击运行 【本地Git仓库一键替换.cmd】
+echo.
+pause

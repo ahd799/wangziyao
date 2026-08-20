@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>王梓瑶 · 数字媒体 · 个人主页</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      fontFamily: { sans: ['"Plus Jakarta Sans"', '"Noto Sans SC"', 'system-ui', 'sans-serif'] },
+      colors: { ink: { 950: '#030712', 900: '#0b1220' } },
+      keyframes: {
+        floatY: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-6px)' } },
+        glowPulse: { '0%,100%': { opacity: '0.12' }, '50%': { opacity: '0.18' } },
+        toastUp: { '0%': { opacity: '0', transform: 'translate(-50%, 20px)' }, '100%': { opacity: '1', transform: 'translate(-50%, 0)' } },
+      },
+      animation: { floatY: 'floatY 6s ease-in-out infinite', glowPulse: 'glowPulse 8s ease-in-out infinite', toastUp: 'toastUp 0.35s ease-out' },
+    } } };
+  </script>
+  <style>
+    /* 兜底样式：Tailwind CDN 加载失败时也能看到内容 */
+    body { background: #030712; color: #cbd5e1; margin: 0; }
+    img { max-width: 100%; height: auto; }
+    main { padding: 28px 16px 80px; max-width: 1152px; margin: 0 auto; }
+    section { margin-top: 64px; }
+    h1 { color: #fff; font-size: 48px; margin: 8px 0; }
+    h2 { color: #fff; font-size: 28px; margin: 8px 0; }
+    h3 { color: #fff; font-size: 18px; margin: 4px 0; }
+    p { line-height: 1.6; }
+    a { color: #67e8f9; }
+    html { scroll-behavior: smooth; }
+    body { font-family: '"Plus Jakarta Sans"', '"Noto Sans SC"', system-ui, sans-serif; }
+    html, body { overflow-x: hidden; }
+    ::-webkit-scrollbar { width: 8px; } ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(34,211,238,0.25); border-radius: 9999px; }
+    /* 默认可见，JS 加载成功后再隐藏并播放入场动画，避免 Tailwind/JS 失败时空白 */
+    .reveal { opacity: 1; transform: translateY(0); transition: opacity .8s ease, transform .8s ease; }
+    html.js-ready .reveal { opacity: 0; transform: translateY(24px); }
+    html.js-ready .reveal.in { opacity: 1; transform: translateY(0); }
+    .skill-bar > span { display: block; height: 100%; border-radius: 9999px; background: linear-gradient(90deg, #22d3ee, #818cf8); width: 0; transition: width 1.4s cubic-bezier(.22,1,.36,1); box-shadow: 0 0 14px rgba(34,211,238,0.35); }
+    .glow-card { transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease; }
+    .glow-card:hover { transform: translateY(-4px); border-color: rgba(34,211,238,0.35); box-shadow: 0 12px 40px -10px rgba(34,211,238,0.25), 0 0 0 1px rgba(34,211,238,0.08) inset; }
+    .btn-glow { transition: all .3s ease; }
+    .btn-glow:hover { box-shadow: 0 0 24px rgba(34,211,238,0.55), 0 0 0 1px rgba(34,211,238,0.4) inset; transform: translateY(-1px); }
+    .timeline::before { content: ''; position: absolute; left: 11px; top: 6px; bottom: 6px; width: 2px; background: linear-gradient(180deg, rgba(34,211,238,0.6), rgba(129,140,248,0.2), transparent); }
+  </style>
+</head>
+<body class="relative min-h-screen bg-ink-950 text-slate-300 antialiased selection:bg-cyan-400/30 selection:text-white">
+
+  <div aria-hidden="true" class="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+    <div class="absolute -top-40 -left-40 h-[560px] w-[560px] rounded-full bg-cyan-500/15 blur-[140px] animate-glowPulse"></div>
+    <div class="absolute -bottom-48 -right-48 h-[640px] w-[640px] rounded-full bg-indigo-500/15 blur-[140px] animate-glowPulse" style="animation-delay:2s"></div>
+    <div class="absolute top-1/2 left-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-fuchsia-500/5 blur-[140px]"></div>
+    <div class="absolute inset-0 opacity-[0.04]" style="background-image:linear-gradient(to right,#fff 1px,transparent 1px),linear-gradient(to bottom,#fff 1px,transparent 1px);background-size:48px 48px;"></div>
+  </div>
+
+  <header class="fixed top-0 inset-x-0 z-40">
+    <nav class="mx-auto max-w-6xl px-4 sm:px-6 mt-3">
+      <div class="flex items-center justify-between rounded-2xl border border-white/10 bg-slate-900/60 backdrop-blur-xl px-4 py-3">
+        <a href="#hero" class="flex items-center gap-2">
+          <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-400 to-indigo-500 text-sm font-extrabold text-slate-950 shadow-lg shadow-cyan-500/20">王</span>
+          <span class="text-white font-extrabold tracking-wide">王梓瑶<span class="text-cyan-400">.</span></span>
+        </a>
+        <ul class="hidden md:flex items-center gap-1 text-sm text-slate-300">
+          <li><a href="#hero" class="px-3 py-2 rounded-lg hover:text-cyan-300 hover:bg-white/5 transition flex items-center gap-1.5"><i data-lucide="home" class="h-4 w-4"></i>摘要</a></li>
+          <li><a href="#highlights" class="px-3 py-2 rounded-lg hover:text-cyan-300 hover:bg-white/5 transition flex items-center gap-1.5"><i data-lucide="sparkles" class="h-4 w-4"></i>亮点</a></li>
+          <li><a href="#experience" class="px-3 py-2 rounded-lg hover:text-cyan-300 hover:bg-white/5 transition flex items-center gap-1.5"><i data-lucide="briefcase" class="h-4 w-4"></i>经历</a></li>
+          <li><a href="#projects" class="px-3 py-2 rounded-lg hover:text-cyan-300 hover:bg-white/5 transition flex items-center gap-1.5"><i data-lucide="folder-git-2" class="h-4 w-4"></i>项目</a></li>
+          <li><a href="#skills" class="px-3 py-2 rounded-lg hover:text-cyan-300 hover:bg-white/5 transition flex items-center gap-1.5"><i data-lucide="layout-grid" class="h-4 w-4"></i>技能</a></li>
+          <li><a href="#education" class="px-3 py-2 rounded-lg hover:text-cyan-300 hover:bg-white/5 transition flex items-center gap-1.5"><i data-lucide="graduation-cap" class="h-4 w-4"></i>教育</a></li>
+          <li><a href="#gallery" class="px-3 py-2 rounded-lg hover:text-cyan-300 hover:bg-white/5 transition flex items-center gap-1.5"><i data-lucide="images" class="h-4 w-4"></i>作品集</a></li>
+        </ul>
+        <a href="#hero" class="md:hidden inline-flex items-center gap-1.5 rounded-lg border border-white/10 px-3 py-2 text-xs text-cyan-300"><i data-lucide="menu" class="h-4 w-4"></i> 导航</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="mx-auto max-w-6xl px-4 sm:px-6 pt-28 pb-20">
+
+    <section id="hero" class="reveal">
+      <div class="relative overflow-hidden rounded-2xl border border-white/10 bg-slate-900/60 backdrop-blur-xl p-6 sm:p-10">
+        <div class="absolute -top-24 -right-24 h-72 w-72 rounded-full bg-cyan-500/20 blur-3xl"></div>
+        <div class="absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-indigo-500/20 blur-3xl"></div>
+        <div class="relative grid md:grid-cols-[auto,1fr] gap-8 items-center">
+          <div class="flex justify-center md:justify-start">
+            <div class="relative">
+              <div class="absolute inset-0 rounded-full bg-gradient-to-br from-cyan-400 to-indigo-500 blur-md opacity-60 animate-floatY"></div>
+              <div class="relative h-28 w-28 sm:h-36 sm:w-36 rounded-full bg-gradient-to-br from-cyan-400 to-indigo-500 p-[3px]">
+                <img src="./avatar.jpg" alt="王梓瑶 大头照" loading="lazy" class="h-full w-full rounded-full object-cover bg-slate-950" onerror="this.onerror=null;this.style.background='linear-gradient(135deg,#0f172a,#1e1b4b)';this.style.display='flex';this.parentElement.insertAdjacentHTML('afterbegin','<div class=\'absolute inset-0 rounded-full flex items-center justify-center text-2xl font-extrabold text-white\'>王梓瑶</div>');" />
+              </div>
+              <span class="absolute -bottom-1 -right-1 inline-flex items-center gap-1 rounded-full bg-emerald-500/15 border border-emerald-400/30 px-2 py-1 text-[10px] text-emerald-300"><span class="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse"></span> 在读</span>
+            </div>
+          </div>
+          <div class="text-center md:text-left">
+            <p class="text-cyan-400 font-semibold tracking-widest text-sm uppercase">Digital Media · Freshman</p>
+            <h1 class="mt-2 text-4xl sm:text-5xl font-extrabold text-white tracking-tight">王梓瑶</h1>
+            <p class="mt-3 text-base sm:text-lg text-slate-300">数字媒体 · 准大一 · <span class="text-cyan-300">河北工业职业技术大学</span></p>
+            <div class="mt-5 flex flex-wrap gap-2 justify-center md:justify-start">
+              <span class="inline-flex items-center gap-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 px-3 py-1 text-xs text-cyan-300"><i data-lucide="sparkles" class="h-3.5 w-3.5"></i>AI 设计</span>
+              <span class="inline-flex items-center gap-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 px-3 py-1 text-xs text-cyan-300"><i data-lucide="presentation" class="h-3.5 w-3.5"></i>PPT 演示</span>
+              <span class="inline-flex items-center gap-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 px-3 py-1 text-xs text-cyan-300"><i data-lucide="users" class="h-3.5 w-3.5"></i>团队协调</span>
+              <span class="inline-flex items-center gap-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 px-3 py-1 text-xs text-cyan-300"><i data-lucide="zap" class="h-3.5 w-3.5"></i>快速学习</span>
+            </div>
+            <div class="mt-6 flex flex-wrap gap-2 justify-center md:justify-start text-sm">
+              <a href="tel:15632936502" class="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 hover:border-cyan-400/40 hover:text-cyan-300 transition"><i data-lucide="phone" class="h-4 w-4 text-cyan-400"></i> 15632936502</a>
+              <button id="copyEmail" type="button" class="btn-glow inline-flex items-center gap-2 rounded-lg border border-cyan-400/30 bg-cyan-500/10 px-3 py-1.5 text-cyan-200 hover:text-white"><i data-lucide="mail" class="h-4 w-4"></i> 2963807902@qq.com <i data-lucide="copy" class="h-3.5 w-3.5 opacity-70"></i></button>
+              <span class="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5"><i data-lucide="map-pin" class="h-4 w-4 text-cyan-400"></i> 河北邢台</span>
+              <span class="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5"><i data-lucide="cake" class="h-4 w-4 text-cyan-400"></i> 2008.08.27</span>
+            </div>
+          </div>
+        </div>
+        <div class="relative mt-8 pt-6 border-t border-white/10">
+          <p class="text-slate-300 leading-relaxed text-[15px]">准大一新生，数字媒体专业。高中三年担任学习委员、纪律委员及宿舍长，具备扎实的组织协调与沟通能力。高考后系统自学 AI 矢量设计、PPT 结构化演示，能独立完成视觉设计及简易交互作品。善于将管理经验转化为可视化成果，适应多任务协作，快速学习新工具。个人爱好：看书与听音乐，已阅读《红岩》《骆驼祥子》《朝花夕拾》等经典文学作品，提升人文素养与审美感知。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="highlights" class="mt-16 reveal">
+      <div class="flex items-end justify-between mb-6">
+        <div>
+          <p class="text-cyan-400 text-xs font-semibold tracking-widest uppercase">Highlights</p>
+          <h2 class="mt-1 text-2xl sm:text-3xl font-extrabold text-white flex items-center gap-2"><i data-lucide="sparkles" class="h-6 w-6 text-cyan-400"></i> 亮点成果</h2>
+        </div>
+        <span class="hidden sm:inline-flex items-center gap-1 text-xs text-slate-400"><i data-lucide="trending-up" class="h-4 w-4"></i> 关键指标</span>
+      </div>
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="glow-card rounded-2xl border border-white/10 bg-slate-900/60 backdrop-blur-xl p-5 text-center"><div class="text-4xl sm:text-5xl font-extrabold bg-gradient-to-br from-cyan-300 to-indigo-400 bg-clip-text text-transparent">96%</div><p class="mt-2 text-sm text-slate-300">作业提交率提升</p></div>
+        <div class="glow-card rounded-2xl border border-white/10 bg-slate-900/60 backdrop-blur-xl p-5 text-center"><div class="text-4xl sm:text-5xl font-extrabold bg-gradient-to-br from-cyan-300 to-indigo-400 bg-clip-text text-transparent">+15%</div><p class="mt-2 text-sm text-slate-300">班级及格率提高</p></div>
+        <div class="glow-card rounded-2xl border border-white/10 bg-slate-900/60 backdrop-blur-xl p-5 text-center"><div class="text-4xl sm:text-5xl font-extrabold bg-gradient-to-br from-cyan-300 to-indigo-400 bg-clip-text text-transparent">-40%</div><p class="mt-2 text-sm text-slate-300">违纪次数下降</p></div>
+        <div class="glow-card rounded-2xl border border-white/10 bg-slate-900/60 backdrop-blur-xl p-5 text-center"><div class="text-4xl sm:text-5xl font-extrabold bg-gradient-to-br from-cyan-300 to-indigo-400 bg-clip-text text-transparent">98<span class="text-2xl">/100</span></div><p class="mt-2 text-sm text-slate-300">宿舍融洽度</p></div>
+      </div>
+      <div class="mt-4 grid sm:grid-cols-2 gap-4">
+        <div class="glow-card rounded-2xl border border-white/10 bg-slate-900/60 backdrop-blur-xl p-5 flex gap-4"><div class="shrink-0 h-11 w-11 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center"><i data-lucide="trending-up" class="h-5 w-5 text-cyan-300"></i></div><div><h3 class="text-white font-semibold">学习效能</h3><p class="mt-1 text-sm text-slate-400 leading-relaxed">班级作业提交率提升至 96%，平均分提高近 10%，及格率 +15%。</p></div></div>
+        <div class="glow-card rounded-2xl border border-white/10 bg-slate-900/60 backdrop-blur-xl p-5 flex gap-4"><div class="shrink-0 h-11 w-11 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center"><i data-lucide="trophy" class="h-5 w-5 text-amber-300"></i></div><div><h3 class="text-white font-semibold">纪律管理</h3><p class="mt-1 text-sm text-slate-400 leading-relaxed">月均违纪次数下降 40%，获班主任书面表扬。</p></div></div>
+        <div class="glow-card rounded-2xl border border-white/10 bg-slate-900/60 backdrop-blur-xl p-5 flex gap-4"><div class="shrink-0 h-11 w-11 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center"><i data-lucide="home" class="h-5 w-5 text-emerald-300"></i></div><div><h3 class="text-white font-semibold">宿舍建设</h3><p class="mt-1 text-sm text-slate-400 leading-relaxed">连续两学期校级优秀宿舍，融洽度 98/100。</p></div></div>
+        <div class="glow-card rounded-2xl border border-white/10 bg-slate-900/60 backdrop-blur-xl p-5 flex gap-4"><div class="shrink-0 h-11 w-11 rounded-xl bg-fuchsia-500/10 border border-fuchsia-500/20 flex items-center justify-center"><i data-lucide="gamepad-2" class="h-5 w-5 text-fuchsia-300"></i></div><div><h3 class="text-white font-semibold">项目实践</h3><p class="mt-1 text-sm text-slate-400 leading-relaxed">独立完成 2D 游戏及简历视觉设计，好评率 90%。</p></div></div>
+      </div>
+    </section>
+
+    <section id="experience" class="mt-16 reveal">
+      <div class="mb-6">
+        <p class="text-cyan-400 text-xs font-semibold tracking-widest uppercase">Experience</p>
+        <h2 class="mt-1 text-2xl sm:text-3xl font-extrabold text-white flex items-center gap-2"><i data-lucide="briefcase" class="h-6 w-6 text-cyan-400"></i> 工作与校园经历</h2>
+      </div>
+      <div class="rounded-2xl border border-white/10 bg-slate-900/60 backdrop-blur-xl p-5 sm:p-7">
+        <ol class="timeline relative space-y-8 pl-9">
+          <li class="relative">
+            <span class="absolute -left-[27px] top-1.5 h-3 w-3 rounded-full bg-cyan-400 ring-4 ring-cyan-400/20"></span>
+            <div class="flex flex-wrap items-center gap-x-3 gap-y-1"><h3 class="text-white font-semibold">班级学习委员兼纪律委员宿舍长</h3><span class="text-xs text-slate-400">·</span><span class="text-sm text-cyan-300">沙河市第二中学</span></div>
+            <p class="mt-1 inline-flex items-center gap-1.5 text-xs text-slate-400"><i data-lucide="calendar" class="h-3.5 w-3.5"></i>2023.09 – 2026.06</p>
+            <ul class="mt-3 space-y-2 text-sm text-slate-300">
+              <li class="flex gap-2"><i data-lucide="check-circle-2" class="h-4 w-4 shrink-0 mt-0.5 text-cyan-400"></i><span>统筹负责班级 60 余名同学的日常学习与纪律管理，建立"预习提醒 + 作业追踪"机制，作业提交率从 82% 提升至 96%。</span></li>
+              <li class="flex gap-2"><i data-lucide="check-circle-2" class="h-4 w-4 shrink-0 mt-0.5 text-cyan-400"></i><span>组织期末考前互助小组，按学科薄弱项精准分组，班级平均分提升近 10%，单科及格率提高 15%。</span></li>
+              <li class="flex gap-2"><i data-lucide="check-circle-2" class="h-4 w-4 shrink-0 mt-0.5 text-cyan-400"></i><span>维护考勤与行为台账，每周提交纪律简报，协助处理 20 余起事件，月均违纪次数下降 40%。</span></li>
+              <li class="flex gap-2"><i data-lucide="check-circle-2" class="h-4 w-4 shrink-0 mt-0.5 text-cyan-400"></i><span>收集并汇总 30 余条教学建议，推动 2 门课程调整教学节奏，同学满意度显著提升。</span></li>
+            </ul>
+          </li>
+          <li class="relative">
+            <span class="absolute -left-[27px] top-1.5 h-3 w-3 rounded-full bg-indigo-400 ring-4 ring-indigo-400/20"></span>
+            <div class="flex flex-wrap items-center gap-x-3 gap-y-1"><h3 class="text-white font-semibold">宿舍长</h3><span class="text-xs text-slate-400">·</span><span class="text-sm text-cyan-300">沙河市第二中学</span></div>
+            <p class="mt-1 inline-flex items-center gap-1.5 text-xs text-slate-400"><i data-lucide="calendar" class="h-3.5 w-3.5"></i>2023.09 – 2026.06</p>
+            <ul class="mt-3 space-y-2 text-sm text-slate-300">
+              <li class="flex gap-2"><i data-lucide="check-circle-2" class="h-4 w-4 shrink-0 mt-0.5 text-cyan-400"></i><span>负责 8 名成员作息、卫生与关系协调，制定"轮值清扫 + 互评激励"制度，连续两学期获"校级优秀宿舍"。</span></li>
+              <li class="flex gap-2"><i data-lucide="check-circle-2" class="h-4 w-4 shrink-0 mt-0.5 text-cyan-400"></i><span>调解宿舍冲突 10 余起，通过民主公约实现全年无重大投诉，成员融洽度评分达 98/100。</span></li>
+              <li class="flex gap-2"><i data-lucide="check-circle-2" class="h-4 w-4 shrink-0 mt-0.5 text-cyan-400"></i><span>流感期建立健康监测机制，每日记录体温并上报，保障全宿舍零缺勤。</span></li>
+            </ul>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="projects" class="mt-16 reveal">
+      <div class="mb-6">
+        <p class="text-cyan-400 text-xs font-semibold tracking-widest uppercase">Projects</p>
+        <h2 class="mt-1 text-2xl sm:text-3xl font-extrabold text-white flex items-center gap-2"><i data-lucide="folder-git-2" class="h-6 w-6 text-cyan-400"></i> 项目经历</h2>
+      </div>
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div class="glow-card rounded-2xl border border-white/10 bg-slate-900/60 backdrop-blur-xl p-5">
+          <div class="flex items-start justify-between gap-3"><div class="flex items-center gap-3"><div class="h-10 w-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center"><i data-lucide="file-text" class="h-5 w-5 text-cyan-300"></i></div><h3 class="text-white font-semibold">个人简历视觉设计</h3></div><span class="text-xs text-slate-400 whitespace-nowrap">2026.07 – 2026.08</span></div>
+          <span class="mt-3 inline-flex items-center gap-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 px-2.5 py-0.5 text-xs text-cyan-300"><i data-lucide="pen-tool" class="h-3.5 w-3.5"></i>Adobe Illustrator</span>
+          <p class="mt-3 text-sm text-slate-400 leading-relaxed">独立完成简历视觉设计（版式、配色、图标），输出线上/线下双版本。将校园管理经验转化为可量化模块，获专业教师积极反馈，并为 10 余名同学提供设计参考。</p>
+        </div>
+        <div class="glow-card rounded-2xl border border-white/10 bg-slate-900/60 backdrop-blur-xl p-5">
+          <div class="flex items-start justify-between gap-3"><div class="flex items-center gap-3"><div class="h-10 w-10 rounded-xl bg-fuchsia-500/10 border border-fuchsia-500/20 flex items-center justify-center"><i data-lucide="gamepad-2" class="h-5 w-5 text-fuchsia-300"></i></div><h3 class="text-white font-semibold">简易 2D 互动小游戏</h3></div><span class="text-xs text-slate-400 whitespace-nowrap">2026.07 – 2026.08</span></div>
+          <span class="mt-3 inline-flex items-center gap-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 px-2.5 py-0.5 text-xs text-cyan-300"><i data-lucide="bot" class="h-3.5 w-3.5"></i>AI 辅助 + Illustrator</span>
+          <p class="mt-3 text-sm text-slate-400 leading-relaxed">独立策划并制作一款 2D 小游戏，含玩法、角色、场景与交互逻辑。设计 3 关递进难度，平均通关 5 分钟内，10 人试玩好评率 90%。作品已归档作为数字作品集首项。</p>
+        </div>
+        <div class="glow-card rounded-2xl border border-white/10 bg-slate-900/60 backdrop-blur-xl p-5 sm:col-span-2">
+          <div class="flex items-start justify-between gap-3"><div class="flex items-center gap-3"><div class="h-10 w-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center"><i data-lucide="presentation" class="h-5 w-5 text-amber-300"></i></div><h3 class="text-white font-semibold">高中学习效能提升专项</h3></div><span class="text-xs text-slate-400 whitespace-nowrap">2024.09 – 2025.01</span></div>
+          <span class="mt-3 inline-flex items-center gap-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 px-2.5 py-0.5 text-xs text-cyan-300"><i data-lucide="bar-chart-3" class="h-3.5 w-3.5"></i>PPT / 数据分析</span>
+          <p class="mt-3 text-sm text-slate-400 leading-relaxed">针对文综主观题得分率仅 55% 的问题，发起"答题结构优化"专项，归纳三步法并制作 PPT 分享，覆盖 120 余人次，约 60% 同学反馈对模考有明显帮助。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="mt-16 reveal">
+      <div class="mb-6">
+        <p class="text-cyan-400 text-xs font-semibold tracking-widest uppercase">Skills</p>
+        <h2 class="mt-1 text-2xl sm:text-3xl font-extrabold text-white flex items-center gap-2"><i data-lucide="layout-grid" class="h-6 w-6 text-cyan-400"></i> 技能矩阵</h2>
+      </div>
+      <div class="rounded-2xl border border-white/10 bg-slate-900/60 backdrop-blur-xl p-5 sm:p-7">
+        <div class="grid sm:grid-cols-2 gap-x-8 gap-y-5">
+          <div><div class="flex items-center justify-between text-sm"><span class="inline-flex items-center gap-2 text-slate-200"><i data-lucide="pen-tool" class="h-4 w-4 text-cyan-400"></i>Adobe Illustrator</span><span class="text-cyan-300 font-semibold">85%</span></div><div class="skill-bar mt-2 h-2 rounded-full bg-white/5 overflow-hidden"><span data-val="85"></span></div></div>
+          <div><div class="flex items-center justify-between text-sm"><span class="inline-flex items-center gap-2 text-slate-200"><i data-lucide="presentation" class="h-4 w-4 text-cyan-400"></i>PowerPoint 演示</span><span class="text-cyan-300 font-semibold">80%</span></div><div class="skill-bar mt-2 h-2 rounded-full bg-white/5 overflow-hidden"><span data-val="80"></span></div></div>
+          <div><div class="flex items-center justify-between text-sm"><span class="inline-flex items-center gap-2 text-slate-200"><i data-lucide="bot" class="h-4 w-4 text-cyan-400"></i>AI 辅助创作</span><span class="text-cyan-300 font-semibold">75%</span></div><div class="skill-bar mt-2 h-2 rounded-full bg-white/5 overflow-hidden"><span data-val="75"></span></div></div>
+          <div><div class="flex items-center justify-between text-sm"><span class="inline-flex items-center gap-2 text-slate-200"><i data-lucide="users" class="h-4 w-4 text-cyan-400"></i>沟通与组织</span><span class="text-cyan-300 font-semibold">88%</span></div><div class="skill-bar mt-2 h-2 rounded-full bg-white/5 overflow-hidden"><span data-val="88"></span></div></div>
+          <div><div class="flex items-center justify-between text-sm"><span class="inline-flex items-center gap-2 text-slate-200"><i data-lucide="clipboard-list" class="h-4 w-4 text-cyan-400"></i>项目管理基础</span><span class="text-cyan-300 font-semibold">70%</span></div><div class="skill-bar mt-2 h-2 rounded-full bg-white/5 overflow-hidden"><span data-val="70"></span></div></div>
+        </div>
+        <div class="mt-7 pt-5 border-t border-white/10">
+          <p class="text-xs text-slate-400 mb-3">关键词</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="rounded-full bg-cyan-500/10 border border-cyan-500/20 px-3 py-1 text-xs text-cyan-300">AI 设计</span>
+            <span class="rounded-full bg-cyan-500/10 border border-cyan-500/20 px-3 py-1 text-xs text-cyan-300">PPT 演示</span>
+            <span class="rounded-full bg-cyan-500/10 border border-cyan-500/20 px-3 py-1 text-xs text-cyan-300">团队协调</span>
+            <span class="rounded-full bg-cyan-500/10 border border-cyan-500/20 px-3 py-1 text-xs text-cyan-300">快速学习</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="education" class="mt-16 reveal">
+      <div class="mb-6">
+        <p class="text-cyan-400 text-xs font-semibold tracking-widest uppercase">Education</p>
+        <h2 class="mt-1 text-2xl sm:text-3xl font-extrabold text-white flex items-center gap-2"><i data-lucide="graduation-cap" class="h-6 w-6 text-cyan-400"></i> 教育与证书</h2>
+      </div>
+      <div class="rounded-2xl border border-white/10 bg-slate-900/60 backdrop-blur-xl p-5 sm:p-7">
+        <ol class="timeline relative space-y-7 pl-9">
+          <li class="relative">
+            <span class="absolute -left-[27px] top-1.5 h-3 w-3 rounded-full bg-cyan-400 ring-4 ring-cyan-400/20"></span>
+            <div class="flex flex-wrap items-center gap-x-3 gap-y-1"><h3 class="text-white font-semibold">河北工业职业技术大学（宣钢分院）</h3><span class="rounded-full bg-cyan-500/10 border border-cyan-500/20 px-2.5 py-0.5 text-xs text-cyan-300">数字媒体专业</span></div>
+            <p class="mt-1 inline-flex items-center gap-1.5 text-xs text-slate-400"><i data-lucide="calendar" class="h-3.5 w-3.5"></i>2026.09 – 在读</p>
+          </li>
+          <li class="relative">
+            <span class="absolute -left-[27px] top-1.5 h-3 w-3 rounded-full bg-indigo-400 ring-4 ring-indigo-400/20"></span>
+            <h3 class="text-white font-semibold">沙河市第二中学 <span class="text-slate-400 font-normal text-sm">· 高中</span></h3>
+            <p class="mt-1 inline-flex items-center gap-1.5 text-xs text-slate-400"><i data-lucide="calendar" class="h-3.5 w-3.5"></i>2023.09 – 2026.06</p>
+          </li>
+          <li class="relative">
+            <span class="absolute -left-[27px] top-1.5 h-3 w-3 rounded-full bg-slate-500 ring-4 ring-slate-500/20"></span>
+            <h3 class="text-white font-semibold">沙河市第六中学 <span class="text-slate-400 font-normal text-sm">· 初中</span></h3>
+            <p class="mt-1 inline-flex items-center gap-1.5 text-xs text-slate-400"><i data-lucide="calendar" class="h-3.5 w-3.5"></i>2020.09 – 2023.06</p>
+          </li>
+        </ol>
+        <div class="mt-8 pt-6 border-t border-white/10">
+          <p class="text-sm text-cyan-300 font-semibold mb-3 inline-flex items-center gap-1.5"><i data-lucide="award" class="h-4 w-4"></i>获奖与证书</p>
+          <div class="grid sm:grid-cols-2 gap-2">
+            <div class="flex items-start gap-2 text-sm text-slate-300"><i data-lucide="medal" class="h-4 w-4 mt-0.5 shrink-0 text-amber-300"></i><span>优秀宿舍长（校级，2025、2026 连续两学期）</span></div>
+            <div class="flex items-start gap-2 text-sm text-slate-300"><i data-lucide="medal" class="h-4 w-4 mt-0.5 shrink-0 text-amber-300"></i><span>优秀学生干部（校级，2025）</span></div>
+            <div class="flex items-start gap-2 text-sm text-slate-300"><i data-lucide="star" class="h-4 w-4 mt-0.5 shrink-0 text-amber-300"></i><span>三好学生（校级，2024）</span></div>
+            <div class="flex items-start gap-2 text-sm text-slate-300"><i data-lucide="mic" class="h-4 w-4 mt-0.5 shrink-0 text-amber-300"></i><span>普通话二级甲等（2025）</span></div>
+            <div class="flex items-start gap-2 text-sm text-slate-300 sm:col-span-2"><i data-lucide="book-open" class="h-4 w-4 mt-0.5 shrink-0 text-amber-300"></i><span>高中毕业综合素养评定"优秀"（2026）</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery" class="mt-16 reveal">
+      <div class="mb-6">
+        <p class="text-cyan-400 text-xs font-semibold tracking-widest uppercase">Gallery</p>
+        <h2 class="mt-1 text-2xl sm:text-3xl font-extrabold text-white flex items-center gap-2"><i data-lucide="images" class="h-6 w-6 text-cyan-400"></i> 作品集 · 证书</h2>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4" id="galleryGrid"></div>
+    </section>
+
+    <footer class="mt-16 reveal">
+      <div class="rounded-2xl border border-white/10 bg-slate-900/60 backdrop-blur-xl p-6 sm:p-8 text-center">
+        <div class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-400 to-indigo-500 text-base font-extrabold text-slate-950">王</div>
+        <h3 class="mt-3 text-white font-extrabold text-lg">王梓瑶<span class="text-cyan-400">.</span></h3>
+        <p class="mt-1 text-sm text-slate-400">数字媒体 · 准大一 · 河北工业职业技术大学</p>
+        <div class="mt-5 flex flex-wrap justify-center gap-2 text-sm">
+          <a href="tel:15632936502" class="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 hover:border-cyan-400/40 hover:text-cyan-300 transition"><i data-lucide="phone" class="h-4 w-4 text-cyan-400"></i> 15632936502</a>
+          <a href="mailto:2963807902@qq.com" class="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 hover:border-cyan-400/40 hover:text-cyan-300 transition"><i data-lucide="mail" class="h-4 w-4 text-cyan-400"></i> 2963807902@qq.com</a>
+          <span class="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5"><i data-lucide="map-pin" class="h-4 w-4 text-cyan-400"></i> 河北邢台</span>
+        </div>
+        <p class="mt-6 text-xs text-slate-500">© 2026 王梓瑶 · 个人主页 · Designed with Tailwind &amp; Lucide</p>
+      </div>
+    </footer>
+
+  </main>
+
+  <div id="toast" class="fixed left-1/2 bottom-6 -translate-x-1/2 z-50 hidden">
+    <div class="flex items-center gap-2 rounded-xl border border-cyan-400/30 bg-slate-900/80 backdrop-blur-xl px-4 py-2.5 text-sm text-cyan-200 shadow-lg shadow-cyan-500/10">
+      <i data-lucide="check-circle-2" class="h-4 w-4 text-cyan-400"></i>
+      <span id="toastText">邮箱已复制到剪贴板</span>
+    </div>
+  </div>
+
+  <script>
+    try {
+    document.documentElement.classList.add('js-ready');
+    if (window.lucide) lucide.createIcons();
+    // 作品集：12 张真实图片（来自原站）
+    const galleryGrid = document.getElementById('galleryGrid');
+    if (galleryGrid) {
+      const imgs = [
+        { src: 'avatar.jpg', label: '个人照片' },
+        { src: 'en.png',     label: '作品 · en' },
+        { src: 'gs.jpg',     label: '作品 · gs' },
+        { src: 'zh.jpg',     label: '作品 · zh' },
+        { src: 'de.png',     label: '作品 · de' },
+        { src: 'hu.png',     label: '作品 · hu' },
+        { src: 'uo.png',     label: '作品 · uo' },
+        { src: 'yi.png',    label: '作品 · yi' },
+        { src: 'er.jpg',     label: '作品 · er' },
+        { src: 'es.jpg',     label: '作品 · es' },
+        { src: 'hi.jpg',     label: '作品 · hi' },
+        { src: 'xu.jpg',     label: '作品 · xu' }
+      ];
+      const BASE = './';
+      imgs.forEach((it) => {
+        const d = document.createElement('div');
+        d.className = 'group relative aspect-square overflow-hidden rounded-2xl border border-white/10 bg-slate-900/60 backdrop-blur-xl hover:border-cyan-400/40 transition';
+        d.innerHTML = '<img src="' + BASE + it.src + '" alt="' + it.label + '" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" />' +
+          '<div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/10 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-3">' +
+          '<span class="text-xs text-cyan-200 flex items-center gap-1.5"><i data-lucide="image" class="h-3.5 w-3.5"></i>' + it.label + '</span>' +
+          '</div>';
+        galleryGrid.appendChild(d);
+      });
+      if (window.lucide) lucide.createIcons();
+    }
+    const copyBtn = document.getElementById('copyEmail');
+    const toast = document.getElementById('toast');
+    const toastText = document.getElementById('toastText');
+    let toastTimer = null;
+    function showToast(msg) {
+      toastText.textContent = msg;
+      toast.classList.remove('hidden');
+      toast.classList.add('animate-toastUp');
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => { toast.classList.add('hidden'); toast.classList.remove('animate-toastUp'); }, 2200);
+    }
+    copyBtn.addEventListener('click', async () => {
+      const email = '2963807902@qq.com';
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) { await navigator.clipboard.writeText(email); }
+        else {
+          const ta = document.createElement('textarea'); ta.value = email;
+          ta.style.position = 'fixed'; ta.style.opacity = '0';
+          document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+        }
+        showToast('邮箱已复制到剪贴板');
+      } catch (e) { showToast('复制失败，请手动复制：' + email); }
+    });
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          entry.target.querySelectorAll('.skill-bar > span').forEach((bar) => {
+            const val = bar.getAttribute('data-val'); if (val) bar.style.width = val + '%';
+          });
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    setTimeout(() => { document.querySelectorAll('#hero.reveal').forEach((el) => el.classList.add('in')); }, 100);
+    } catch (e) { console.error('init error:', e); }
+  </script>
+</body>
+</html>

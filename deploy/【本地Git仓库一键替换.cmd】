@@ -1,0 +1,31 @@
+@echo off
+chcp 65001 >nul
+cls
+echo ============================================================
+echo   本地 Git 仓库一键替换（适合你已经 git clone 了 wangziyao 的情况）
+echo ============================================================
+echo.
+echo 请把下面这 4 行命令，复制到你本地仓库目录的 PowerShell 或 Git Bash 里执行：
+echo.
+echo --------------------------------------------------------------------
+echo   方式A：粘贴到 Git Bash / CMD（仓库根目录下）
+echo.
+echo   copy "d:\飞机大战\wangziyao-portfolio\deploy\index.html" index.html
+echo   git add index.html
+echo   git commit -m "feat: 重构主页 — 深色毛玻璃科技风 UI + Lucide 图标 + Tailwind CSS"
+echo   git push
+echo --------------------------------------------------------------------
+echo.
+echo   方式B：粘贴到 PowerShell（仓库根目录下）
+echo.
+echo   Copy-Item "d:\飞机大战\wangziyao-portfolio\deploy\index.html" index.html -Force
+echo   git add index.html ; git commit -m "feat: 重构主页 UI" ; git push
+echo --------------------------------------------------------------------
+echo.
+echo   ⚠ 注意：
+echo   · 你的电脑上目前没有检测到 wangziyao 仓库的 clone，所以这个脚本只给你命令
+echo   · 如果以后 clone 下来了，把"Copy-Item"那行的目标路径改成你 clone 的路径即可
+echo   · 图片不用重新上传！原站已经有 avatar.jpg / en.png / ... 12 张图了，
+echo     HTML 里写的是 ./avatar.jpg 等相对路径，会直接调用同目录下的原有图片
+echo.
+pause
